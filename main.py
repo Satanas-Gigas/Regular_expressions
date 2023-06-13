@@ -8,14 +8,14 @@ with open("phonebook_raw.csv", encoding='utf-8') as f:
     contacts_list = list(rows)
     contacts_list[4].pop(-1)
 
-pattern = r"^(\w+[À-ßà-ÿ])\W(\w+)\W(\w+)?\,+"
+pattern = r"^(\w+[Ã€-ÃŸÃ -Ã¿])\W(\w+)\W(\w+)?\,+"
 substitution = r"\1,\2,\3,"
 for el in contacts_list[1:]:
     text = ','.join(el[0:3])
     text = re.sub(pattern, substitution, text).split(',')
     el[0], el[1], el[2] = text[0], text[1], text[2]
 
-pattern = r"(\+7|8)\s?\W?(\d{3})\W?\s?(\d{3})\W?(\d{2})\W?(\d{2})(\ )?\(?(\ ?äîá.)? ?(\d{4})?\)?"
+pattern = r"(\+7|8)\s?\W?(\d{3})\W?\s?(\d{3})\W?(\d{2})\W?(\d{2})(\ )?\(?(\ ?Ð´Ð¾Ð±.)? ?(\d{4})?\)?"
 substitution = r"+7(\2)\3-\4-\5\6\7\8"
 for element in contacts_list[1:]:
     element[5] = re.sub(pattern, substitution, element[5])
